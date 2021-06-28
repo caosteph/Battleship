@@ -1,0 +1,97 @@
+=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+CIS 120 Game Project README
+PennKey: caosteph
+=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=:=
+
+===================
+=: Core Concepts :=
+===================
+
+- List the four core concepts, the features they implement, and why each feature
+  is an appropriate use of the concept. Incorporate the feedback you got after
+  submitting your proposal.
+
+  1. I will use 2D arrays to keep track of the state of the tiles on the board.
+  I have a Tile class and so each element of the array will contain the tile corresponding
+  to the same coordinates on the board. So the tile in the [0][0] index of the array will 
+  correspond with the tile at the upper left of the board.
+
+  2. I will use collections to keep track of the pieces that belong to each player.
+  The collection will be of different ship objects, which have their own associated length,
+  orientation, squares that it takes up, and whether or not it’s still in play or not. 
+  I will be using a tree map since there can’t be any repeated ships and so I can access the
+  ships through their names. The 5 ships have different names based on what they're called in
+  the game, so each user has 5 ships, which are named "carrier," "battleship," "cruiser," 
+  "submarine," and "destroyer."
+  
+  3.I will use I/O to save the game state and to display the rankings of players. In order
+  to save the game state, I write to a text file the names of the players, the coordinates of 
+  their ships, and the tiles that they've fired upon. I then read this file in order to restore
+  the state. In order to display the rankings of the players, I have a text file that contains
+  the name of a winner on every line. If a user has won multiple times, their name will appear
+  on multiple lines. When reading this file I count the players whose names occur the most
+  number of times in order to determine the rankings. Using I/O is useful in these cases because
+  it can store information across different 
+
+  4. I will be testing features like that the program registers when ships of different
+  sizes are sunk, that the game ends when all of a certain user’s ships are sunk, and that
+  only the player whose turn it is is able to play. Edge cases include if a player is one away
+  from hitting the ship and the next shot goes on the opposite end of the ship, if an empty or
+  finished game is stored correctly, and what happens when a shot misses.
+
+=========================
+=: Your Implementation :=
+=========================
+
+- Provide an overview of each of the classes in your code, and what their
+  function is in the overall game.
+	Battleship.java: Model in MVC. This class handles all of the game play and logic and
+	keeps track of the various states of the game, like the two users' ships and boards. 
+	
+	BattleShipViewer.java: A second model to handle events that happen on the board that is
+	not the users. Since I show two boards on the screen at once (whoever's turn it is and the
+	other user's board), BattleShipViewer handles the selection of tiles that are not on the user's
+	board, aka when the user is firing.
+	
+	Game.java: Viewer for the game, makes everything appear on the screen. Creates an instance of
+	GameBoard, whose methods are called depending on what buttons are being pressed.
+	
+	GameBoard.java: Controller for the game. Interacts with Game.java and Battleship.java so that
+	whatever events happen on the screen get relayed to Battleship.java. 
+	
+	Ship.java: Ship class to keep track of the users' ships and whether they've been sunk or hit yet.
+	
+	StatusPanel.java: Controls side panel that is displayed on the screen and shows what ships 
+	have not been sunk yet and whose turn it is.
+	
+	Tile.java: Each tile on the board is an instance of Tile, and has fields including if there is a
+	ship in it, if it has been hit, etc. 
+
+
+- Were there any significant stumbling blocks while you were implementing your
+  game (related to your design, or otherwise)?
+  
+  	I had a hard time trying to figure out how to get the two boards to update appropriately based on whose 
+  turn it was. It was also a lot harder than I anticipated to implement the part where the
+  users select where to put their boards.
+
+
+- Evaluate your design. Is there a good separation of functionality? How well is
+  private state encapsulated? What would you refactor, if given the chance?
+
+	I think I did a decent job of sticking with the model of Model-View-Controller, but I think the way I 
+	implemented the tiles and ships could have been more efficient since there's some repeated information stored.
+	I think the state of Battleship is pretty encapsulated but I could have done a better job with the encapsulation
+	of Tile I think. I would try to redo the way I get users to place their ships, because I felt like I was using
+	a lot of space and creating a lot of extra variables and methods. 
+	
+
+
+========================
+=: External Resources :=
+========================
+
+- Cite any external resources (libraries, images, tutorials, etc.) that you may
+  have used while implementing your game.
+  I based my instructions on these rules: https://www.cs.nmsu.edu/~bdu/TA/487/brules.htm
+ 
