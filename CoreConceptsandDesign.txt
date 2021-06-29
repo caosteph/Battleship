@@ -30,10 +30,9 @@ PennKey: caosteph
   the state. In order to display the rankings of the players, I have a text file that contains
   the name of a winner on every line. If a user has won multiple times, their name will appear
   on multiple lines. When reading this file I count the players whose names occur the most
-  number of times in order to determine the rankings. Using I/O is useful in these cases because
-  it can store information across different 
+  number of times in order to determine the rankings. 
 
-  4. I will be testing features like that the program registers when ships of different
+  4. I will be testing features to make sure that the program registers when ships of different
   sizes are sunk, that the game ends when all of a certain user’s ships are sunk, and that
   only the player whose turn it is is able to play. Edge cases include if a player is one away
   from hitting the ship and the next shot goes on the opposite end of the ship, if an empty or
